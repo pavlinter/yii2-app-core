@@ -15,6 +15,7 @@ if (YII_ENV_DEV) {
 }
 
 $config = [
+    'name' => 'My Application',
     'id' => 'app-core',
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
@@ -137,7 +138,7 @@ $config = [
             ],
         ],
         'view' => [
-            'title' => 'Application Name',
+            'title' => 'My title',
             'theme' => [
                 'pathMap' => [
                     '@vendor/pavlinter/yii2-adm-pages/admpages/views' => '@app/views/admpages',
@@ -158,6 +159,7 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
+            'viewPath' => '@app/mail',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

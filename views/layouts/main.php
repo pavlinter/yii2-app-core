@@ -51,12 +51,27 @@ if (Yii::$app->user->isGuest) {
         'label' => 'Login',
         'url' => ['/site/login']
     ];
+
+    $Menu1[] = [
+        'label' => 'Sign up',
+        'url' => ['/site/signup']
+    ];
+    $Menu1[] = [
+        'label' => 'Reset Password',
+        'url' => ['/site/request-password-reset']
+    ];
+
+
 } else {
     $Menu1[] = [
         'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
         'url' => ['/site/logout'],
         'linkOptions' => ['data-method' => 'post']
     ];
+
+
+
+
 }
 
 $MenuLangs = [];
