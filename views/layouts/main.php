@@ -124,6 +124,9 @@ foreach (Yii::$app->getI18n()->getLanguages() as $language) {
     <?= Breadcrumbs::widget([
         'links' => Yii::$app->params['breadcrumbs'],
     ]) ?>
+
+    <?= \app\widgets\Alert::widget() ?>
+
     <?= $content ?>
 </div>
 

@@ -14,6 +14,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p><?= Yii::t("app/passwordReset", "Please fill out your email. A link to reset password will be sent there.") ?></p>
 
+    <?= \app\widgets\Alert::widget() ?>
+
     <div class="row">
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>

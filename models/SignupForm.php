@@ -12,6 +12,7 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $verifyCode;
 
     /**
      * @inheritdoc
@@ -21,16 +22,31 @@ class SignupForm extends Model
         return [
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => 'app\models\User', 'message' => 'This username has already been taken.'],
+            ['username', 'unique', 'targetClass' => 'app\models\User', 'message' => Yii::t("model/signup", "This username has already been taken.")],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'unique', 'targetClass' => 'app\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => 'app\models\User', 'message' => Yii::t("model/signup", "This email address has already been taken.")],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+            // verifyCode needs to be entered correctly
+            ['verifyCode', 'captcha'],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'username' => Yii::t("model/signup", "Username"),
+            'email' => Yii::t("model/signup", "Email"),
+            'password' => Yii::t("model/signup", "Password"),
+            'verifyCode' => Yii::t("model/signup", "Verification Code"),
         ];
     }
 

@@ -1,6 +1,7 @@
 <?php
 namespace app\models;
 
+use Yii;
 use yii\base\Model;
 
 /**
@@ -22,8 +23,18 @@ class PasswordResetRequestForm extends Model
             ['email', 'exist',
                 'targetClass' => 'app\models\User',
                 'filter' => ['status' => User::STATUS_ACTIVE],
-                'message' => 'There is no user with such email.'
+                'message' => Yii::t("app/passwordReset", "There is no user with such email.")
             ],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'email' => Yii::t("model/passwordReset", "Email"),
         ];
     }
 
@@ -46,10 +57,10 @@ class PasswordResetRequestForm extends Model
             }
 
             if ($user->save()) {
-                return \Yii::$app->mailer->compose('passwordResetToken', ['user' => $user])
-                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name . ' robot'])
+                return Yii::$app->mailer->compose('passwordResetToken', ['user' => $user])
+                    ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name ])
                     ->setTo($this->email)
-                    ->setSubject('Password reset for ' . \Yii::$app->name)
+                    ->setSubject(Yii::t("app/passwordReset", "Password reset for {appName}", ['appName' => Yii::$app->name, 'dot' => false]))
                     ->send();
             }
         }

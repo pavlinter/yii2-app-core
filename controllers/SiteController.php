@@ -7,7 +7,6 @@ use app\models\ResetPasswordForm;
 use app\models\SignupForm;
 use Yii;
 use yii\base\InvalidParamException;
-use yii\filters\AccessControl;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -124,7 +123,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
                 Yii::$app->getSession()->setFlash('success', Yii::t("app/passwordReset", "Check your email for further instructions."));
-                return $this->goHome();
+                return $this->refresh();
             } else {
                 Yii::$app->getSession()->setFlash('error', Yii::t("app/passwordReset", "Sorry, we are unable to reset password for email provided."));
             }
