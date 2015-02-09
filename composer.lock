@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ac39bcfb14be4e413b88559d2d0a1df2",
+    "hash": "e57237d1c7e01ef444a3e34c6555f759",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -1844,12 +1844,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pavlinter/yii2-adm.git",
-                "reference": "e551b313dc462c9c861d51d8682532b8b7769055"
+                "reference": "49138f1bf5f5732e42033b72b2e956ae6605df08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pavlinter/yii2-adm/zipball/e551b313dc462c9c861d51d8682532b8b7769055",
-                "reference": "e551b313dc462c9c861d51d8682532b8b7769055",
+                "url": "https://api.github.com/repos/pavlinter/yii2-adm/zipball/49138f1bf5f5732e42033b72b2e956ae6605df08",
+                "reference": "49138f1bf5f5732e42033b72b2e956ae6605df08",
                 "shasum": ""
             },
             "require": {
@@ -1887,7 +1887,7 @@
                 "cms",
                 "yii2"
             ],
-            "time": "2015-02-05 18:49:55"
+            "time": "2015-02-09 14:02:56"
         },
         {
             "name": "pavlinter/yii2-adm-email-config",
@@ -1895,12 +1895,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pavlinter/yii2-adm-email-config.git",
-                "reference": "00210194a375d89b9c1e5d2e02d99f6fc2da4d89"
+                "reference": "2019f5ed35d59ea9913e828319c82f79fe07084a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pavlinter/yii2-adm-email-config/zipball/00210194a375d89b9c1e5d2e02d99f6fc2da4d89",
-                "reference": "00210194a375d89b9c1e5d2e02d99f6fc2da4d89",
+                "url": "https://api.github.com/repos/pavlinter/yii2-adm-email-config/zipball/2019f5ed35d59ea9913e828319c82f79fe07084a",
+                "reference": "2019f5ed35d59ea9913e828319c82f79fe07084a",
                 "shasum": ""
             },
             "require": {
@@ -1931,7 +1931,7 @@
                 "email",
                 "yii2"
             ],
-            "time": "2015-01-28 14:54:18"
+            "time": "2015-02-08 18:23:27"
         },
         {
             "name": "pavlinter/yii2-adm-mailing",
@@ -1982,12 +1982,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pavlinter/yii2-adm-pages.git",
-                "reference": "b555fff27252955ee5ac33ec6edeb93e2d34f53f"
+                "reference": "f9b112e3846b79dc4ee355c99d87de8e08e06d56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pavlinter/yii2-adm-pages/zipball/b555fff27252955ee5ac33ec6edeb93e2d34f53f",
-                "reference": "b555fff27252955ee5ac33ec6edeb93e2d34f53f",
+                "url": "https://api.github.com/repos/pavlinter/yii2-adm-pages/zipball/f9b112e3846b79dc4ee355c99d87de8e08e06d56",
+                "reference": "f9b112e3846b79dc4ee355c99d87de8e08e06d56",
                 "shasum": ""
             },
             "require": {
@@ -2016,7 +2016,7 @@
                 "cms",
                 "yii2"
             ],
-            "time": "2015-02-05 11:24:17"
+            "time": "2015-02-09 11:03:34"
         },
         {
             "name": "pavlinter/yii2-adm-params",
@@ -2153,16 +2153,16 @@
         },
         {
             "name": "pavlinter/yii2-dot-translation",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pavlinter/yii2-dot-translation.git",
-                "reference": "d9e4a892f1a78e727144e9b3f745f77233e4e5ba"
+                "reference": "b4e0e250ebba4feb9140ed7b409ec4384b60f104"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pavlinter/yii2-dot-translation/zipball/d9e4a892f1a78e727144e9b3f745f77233e4e5ba",
-                "reference": "d9e4a892f1a78e727144e9b3f745f77233e4e5ba",
+                "url": "https://api.github.com/repos/pavlinter/yii2-dot-translation/zipball/b4e0e250ebba4feb9140ed7b409ec4384b60f104",
+                "reference": "b4e0e250ebba4feb9140ed7b409ec4384b60f104",
                 "shasum": ""
             },
             "require": {
@@ -2193,7 +2193,7 @@
                 "translation",
                 "yii2"
             ],
-            "time": "2015-01-13 20:12:16"
+            "time": "2015-02-09 10:39:47"
         },
         {
             "name": "pavlinter/yii2-url-manager",

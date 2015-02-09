@@ -38,6 +38,28 @@ $config = [
                 'admeconfig',
                 'admmailing',
             ],
+            'components' => [
+                'manager' => [
+                    'userClass' => 'app\models\User',
+                    /*
+                    'userSearchClass' => 'pavlinter\adm\models\UserSearch',
+                    'loginFormClass' => 'pavlinter\adm\models\LoginForm',
+                    'authItemClass' => 'pavlinter\adm\models\AuthItem',
+                    'authItemSearchClass' => 'pavlinter\adm\models\AuthItemSearch',
+                    'authRuleClass' => 'pavlinter\adm\models\AuthRule',
+                    'authRuleSearchClass' => 'pavlinter\adm\models\AuthRuleSearch',
+                    'authItemChildClass' => 'pavlinter\adm\models\AuthItemChild',
+                    'authItemChildSearchClass' => 'pavlinter\adm\models\AuthItemChildSearch',
+                    'authAssignmentClass' => 'pavlinter\adm\models\AuthAssignment',
+                    'authAssignmentSearchClass' => 'pavlinter\adm\models\AuthAssignmentSearch',
+                    'languageClass' => 'pavlinter\adm\models\Language',
+                    'languageSearchClass' => 'pavlinter\adm\models\LanguageSearch',
+                    'sourceMessageClass' => 'pavlinter\adm\models\SourceMessage',
+                    'sourceMessageSearchClass' => 'pavlinter\adm\models\SourceMessageSearch',
+                    'messageClass' => 'pavlinter\adm\models\Message',
+                    */
+                ],
+            ],
         ],
         'appadm' => [
             'class' => 'app\modules\appadm\Module',
@@ -129,6 +151,7 @@ $config = [
             ],
         ],
         'assetManager' => [
+            //'appendTimestamp' => true, //yii2 >= 2.0.3
             'bundles' => [
                 'yii\bootstrap\BootstrapAsset' => [
                     'basePath' => '@webroot/assets_b/common',
