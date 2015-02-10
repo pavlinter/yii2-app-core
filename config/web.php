@@ -20,6 +20,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
+        'debug',
         'urlManager',
         'i18n',
     ],
@@ -29,6 +30,10 @@ $config = [
         \pavlinter\admeconfig\models\EmailConfig::changeMailConfig();
     },
     'modules' => [
+        'debug' => [
+            'class' => 'yii\debug\Module',
+            'allowedIPs' => ['127.0.0.1', '::1']
+        ],
         'adm' => [
             'class' => 'pavlinter\adm\Adm',
             'modules' => [
@@ -200,9 +205,6 @@ $config = [
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
-    $config['bootstrap'][] = 'debug';
-    $config['modules']['debug'] = 'yii\debug\Module';
-
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class'      => 'yii\gii\Module',
