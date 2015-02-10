@@ -63,7 +63,16 @@ class SignupForm extends Model
             $user->email = $this->email;
             $user->setPassword($this->password);
             $user->generateAuthKey();
-            $user->save();
+            $user->generatePasswordResetToken();
+            if ($user->save()) {
+                return Yii::$app->mailer->compose('userApproval', ['user' => $user])
+                    ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name ])
+                    ->setTo($this->email)
+                    ->setSubject(Yii::t("app/signup", "User approval for {appName}", ['appName' => Yii::$app->name,'dot' => false]))
+                    ->send();
+            } else {
+                return null;
+            }
             return $user;
         }
 

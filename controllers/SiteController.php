@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
 use app\models\SignupForm;
+use app\models\User;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -135,7 +136,9 @@ class SiteController extends Controller
     }
 
     /**
+     * @param $token
      * @return \yii\web\Response
+     * @throws BadRequestHttpException
      */
     public function actionResetPassword($token)
     {
@@ -147,6 +150,42 @@ class SiteController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
             Yii::$app->getSession()->setFlash('success', Yii::t("app/passwordReset", "New password was saved."));
+            return $this->goHome();
+        }
+
+        return $this->render('resetPassword', [
+            'model' => $model,
+        ]);
+    }
+    /**
+     * @param $token
+     * @return \yii\web\Response
+     * @throws BadRequestHttpException
+     */
+    public function actionUserApprove($token)
+    {
+        if (!User::isPasswordResetTokenValid($token)) {
+            return null;
+        }
+        $user = User::findOne([
+            'password_reset_token' => $token,
+            'status' => User::STATUS_NOT_APPROVED,
+        ]);
+        if ($user) {
+            $user->status = User::STATUS_ACTIVE;
+            $user->removePasswordResetToken();
+            if ($user->save()) {
+                Yii::$app->getSession()->setFlash('success', Yii::t("app/signup", "New password was saved."));
+                //Yii::$app->getUser()->login($user);
+            }
+
+        } else {
+            Yii::$app->getSession()->setFlash('info', Yii::t("app/signup", "New password was saved."));
+        }
+
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
+
 
             return $this->goHome();
         }

@@ -6,13 +6,13 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \app\models\LoginForm */
 
-$this->title = 'Login';
+$this->title = Yii::t("app/login", "Log in", ['dot' => false]);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to login:</p>
+    <p><?= Yii::t("app/login", "Please fill out the following fields to login:") ?></p>
 
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
@@ -33,7 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="form-group">
         <div class="col-lg-offset-1 col-lg-11">
-            <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+            <?= Html::submitButton(Yii::t("app/login", "Login", ['dot' => false]), ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+            <?= Yii::t("app/login", "Login", ['dot' => '.']) ?>
         </div>
     </div>
 
