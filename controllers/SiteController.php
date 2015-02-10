@@ -72,10 +72,6 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
@@ -104,9 +100,8 @@ class SiteController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
+                Yii::$app->getSession()->setFlash('success', Yii::t("app/signup", "Check your email for further instructions."));
+                return $this->refresh();
             }
         }
 
@@ -164,34 +159,34 @@ class SiteController extends Controller
      */
     public function actionUserApprove($token)
     {
-        if (!User::isPasswordResetTokenValid($token)) {
-            return null;
-        }
-        $user = User::findOne([
-            'password_reset_token' => $token,
-            'status' => User::STATUS_NOT_APPROVED,
-        ]);
-        if ($user) {
-            $user->status = User::STATUS_ACTIVE;
-            $user->removePasswordResetToken();
-            if ($user->save()) {
-                Yii::$app->getSession()->setFlash('success', Yii::t("app/signup", "New password was saved."));
-                //Yii::$app->getUser()->login($user);
+        $type = 'info';
+        $message = Yii::t("app/signup", "Your account already approved");
+
+        if (!empty($token)) {
+
+            $user = User::findOne([
+                'password_reset_token' => $token,
+                'status' => User::STATUS_NOT_APPROVED,
+            ]);
+
+            if ($user) {
+                $user->status = User::STATUS_ACTIVE;
+                $user->removePasswordResetToken();
+                if ($user->save()) {
+                    $message = Yii::t("app/signup", "Your account successfully approved!");
+                    Yii::$app->getSession()->setFlash('success', $message);
+                    return $this->redirect(['login']);
+                } else {
+                    Yii::error('User(#' . $user->id . ') approved status is not saved');
+                    $message = Yii::t("app/signup", "Oops, something went wrong. Please try again later.");
+                    $type = 'danger';
+                }
             }
-
-        } else {
-            Yii::$app->getSession()->setFlash('info', Yii::t("app/signup", "New password was saved."));
         }
 
-
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-
-
-            return $this->goHome();
-        }
-
-        return $this->render('resetPassword', [
-            'model' => $model,
+        return $this->render('user-approve',[
+            'type' => $type,
+            'message' => $message,
         ]);
     }
 }

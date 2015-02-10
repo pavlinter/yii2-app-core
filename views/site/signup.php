@@ -15,6 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p><?= Yii::t("app/signup", "Please fill out the following fields to signup:") ?></p>
 
+    <?= \app\widgets\Alert::widget() ?>
+
     <div class="row">
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>

@@ -25,10 +25,12 @@ class Module extends \yii\base\Module implements AdmBootstrapInterface
      */
     public function loading($adm)
     {
-        $adm->params['left-menu']['appadm-dashboard'] = [
-            'label' => '<i class="fa fa-list-alt"></i><span>' . $adm::t('appadm','Dashboard') . '</span>',
-            'url' => ['/appadm/dashboard/index']
-        ];
+        if ($adm->user->can('AdmRoot')) {
+            $adm->params['left-menu']['appadm-dashboard'] = [
+                'label' => '<i class="fa fa-list-alt"></i><span>' . $adm::t('appadm','Dashboard') . '</span>',
+                'url' => ['/appadm/dashboard/index']
+            ];
+        }
     }
     /**
      * @inheritdoc
