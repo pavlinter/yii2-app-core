@@ -1,6 +1,6 @@
 <?php
 use app\assets_b\AppAsset;
-use app\core\adm\models\Page;
+use app\core\admpages\models\Page;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;

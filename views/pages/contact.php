@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $model \app\models\ContactForm */
-/* @var $modelPage \app\core\adm\models\Page */
+/* @var $modelPage \app\core\admpages\models\Page */
 
 Module::getInstance()->layout = Module::getInstance()->pageLayout;
 $this->title = $modelPage->title;

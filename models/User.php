@@ -17,7 +17,6 @@ class User extends \pavlinter\adm\models\User
     public function rules()
     {
         return [
-
             [['username'], 'unique'],
             [['email'], 'email'],
 

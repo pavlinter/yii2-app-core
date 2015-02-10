@@ -28,7 +28,7 @@ class PagesController extends Controller
     }
 
     /**
-     * @param null|\app\core\adm\models\Page $modelPage
+     * @param null|\app\core\admpages\models\Page $modelPage
      * @return string|\yii\web\Response
      */
     public function actionContact($modelPage = null)

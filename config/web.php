@@ -41,8 +41,8 @@ $config = [
             'components' => [
                 'manager' => [
                     'userClass' => 'app\models\User',
+                    'userSearchClass' => 'app\core\adm\models\UserSearch',
                     /*
-                    'userSearchClass' => 'pavlinter\adm\models\UserSearch',
                     'loginFormClass' => 'pavlinter\adm\models\LoginForm',
                     'authItemClass' => 'pavlinter\adm\models\AuthItem',
                     'authItemSearchClass' => 'pavlinter\adm\models\AuthItemSearch',

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\core\adm\models;
+namespace app\core\admpages\models;
 
 use Yii;
 
