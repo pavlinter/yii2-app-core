@@ -30,10 +30,6 @@ $config = [
         \pavlinter\admeconfig\models\EmailConfig::changeMailConfig();
     },
     'modules' => [
-        'debug' => [
-            'class' => 'yii\debug\Module',
-            'allowedIPs' => ['127.0.0.1', '::1']
-        ],
         'adm' => [
             'class' => 'pavlinter\adm\Adm',
             'modules' => [
@@ -87,7 +83,12 @@ $config = [
                 return [];
             },
             'pageLayout' => '/main',
-            'closeDeletePage' => [] //id [2,130]
+            'closeDeletePage' => [], //id [2,130]
+            'components' => [
+                'manager' => [
+                    'pageSearchClass' => 'app\core\admpages\models\PageSearch',
+                ],
+            ],
         ],
         'admparams' => [
             'class' => 'pavlinter\admparams\Module',
@@ -202,24 +203,5 @@ $config = [
     ],
     'params' => $params,
 ];
-
-if (YII_ENV_DEV) {
-    // configuration adjustments for 'dev' environment
-    $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = [
-        'class'      => 'yii\gii\Module',
-        'generators' => [
-            'model'   => [
-                'class'     => '\pavlinter\adm\gii\generators\model\Generator',
-            ],
-            'crud'   => [
-                'class'     => '\pavlinter\adm\gii\generators\crud\Generator',
-            ],
-            'module'   => [
-                'class'     => '\pavlinter\adm\gii\generators\module\Generator',
-            ],
-        ]
-    ];
-}
 
 return $config;
