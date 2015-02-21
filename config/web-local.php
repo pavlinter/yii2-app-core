@@ -15,16 +15,16 @@ return [
             'allowedIPs' => ['127.0.0.1', '::1']
         ],
         'gii' => [
-            'class'      => 'yii\gii\Module',
+            'class' => 'yii\gii\Module',
             'generators' => [
-                'model'   => [
-                    'class'     => '\pavlinter\adm\gii\generators\model\Generator',
+                'model' => [
+                    'class' => '\pavlinter\adm\gii\generators\model\Generator',
                 ],
-                'crud'   => [
-                    'class'     => '\pavlinter\adm\gii\generators\crud\Generator',
+                'crud' => [
+                    'class' => '\pavlinter\adm\gii\generators\crud\Generator',
                 ],
-                'module'   => [
-                    'class'     => '\pavlinter\adm\gii\generators\module\Generator',
+                'module' => [
+                    'class' => '\pavlinter\adm\gii\generators\module\Generator',
                 ],
             ]
         ],
