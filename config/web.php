@@ -20,7 +20,6 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
-        'debug',
         'urlManager',
         'i18n',
     ],
