@@ -168,17 +168,6 @@
         filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr=@{ieAlphaColour}, endColorstr=@{ieAlphaColour})"; // IE 6 & 7
      
 }
-.clearfix{
-  zoom:1;
-  &:before,
-  &:after{
-    content:"";
-    display:table;
-  }
-  &:after{
-    clear: both;
-  }
-}
 .text-shadow(@arguments: ~"1px 1px 2px black, 1px 1px 2px black"){
   -moz-text-shadow: @arguments;
   -webkit-text-shadow: @arguments;
