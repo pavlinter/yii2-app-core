@@ -22,6 +22,7 @@ class AppAsset extends AssetBundle
     ];
 
     public $depends = [
+        'app\assets_b\Html5ShivAsset',
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
