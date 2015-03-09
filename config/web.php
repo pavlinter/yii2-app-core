@@ -1,5 +1,7 @@
 <?php
 
+use pavlinter\display\DisplayImage;
+
 if (YII_ENV_DEV) {
     $params = \yii\helpers\ArrayHelper::merge(
         require(__DIR__ . '/params.php'),
@@ -13,6 +15,19 @@ if (YII_ENV_DEV) {
     $params = require(__DIR__ . '/params.php');
     $db = require(__DIR__ . '/db.php');
 }
+
+Yii::$container->set('pavlinter\display\DisplayImage', [
+    'config' => [
+        'pages' => [
+            'imagesWebDir' => '@web/files/pages',
+            'imagesDir' => '@webroot/files/pages',
+            'defaultWebDir' => '@web/files/default',
+            'defaultDir' => '@webroot/files/default',
+            'mode' => DisplayImage::MODE_OUTBOUND,
+        ],
+    ]
+]);
+
 
 $config = [
     'name' => 'My Application',
