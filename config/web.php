@@ -97,7 +97,7 @@ $config = [
                 return [];
             },
             'pageLayout' => '/main',
-            'closeDeletePage' => [], //id [2,130]
+            'closeDeletePage' => [1,2,3], //id [2,130]
             'components' => [
                 'manager' => [
                     'pageSearchClass' => 'app\core\admpages\models\PageSearch',
