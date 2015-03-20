@@ -5,7 +5,9 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 $adm = Adm::getInstance();
-$languages = Yii::$app->getI18n()->getLanguages();
+/* @var $i18n \pavlinter\translation\I18N */
+$i18n = Yii::$app->getI18n();
+$languages = $i18n->getLanguages(true);
 ?>
 
 <header class="main-header header bg-black navbar navbar-inverse pull-in">
@@ -48,12 +50,13 @@ $languages = Yii::$app->getI18n()->getLanguages();
         </ul>
         <?php }?>
 
-        <?php if (count($languages) > 1) {?>
+        <?php if ($languages) {?>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle dker" data-toggle="dropdown">
                         <?= Adm::t("header", "Languages", ['dot' => false]) ?> <b class="caret"></b>
                     </a>
+
                     <ul class="dropdown-menu animated fadeInLeft">
                         <?php foreach ($languages as $language) {
                             $text = $language['name'];
@@ -61,7 +64,7 @@ $languages = Yii::$app->getI18n()->getLanguages();
                                 $text = Html::img($language['image'], ['style' => 'height: 18px;']) . '&nbsp;' . $text;
                             }
                             ?>
-                            <li><?= Html::a($text, ['/adm', 'lang' => $language['code']]); ?></li>
+                            <li><?= Html::a($text, $language['url']); ?></li>
                         <?php }?>
                     </ul>
                 </li>
