@@ -75,6 +75,36 @@ $config = [
                     */
                 ],
             ],
+            'controllerMap' => [
+                'elfinder' => function ($config) {
+                    $startPath = Yii::$app->request->get('startPath');
+                    if ($startPath) {
+                        $startPath = Yii::getAlias('@webroot') . '/files' . DIRECTORY_SEPARATOR . strtr($startPath, '::', '/');
+                    }
+                    if(Yii::$app->user->can('AdmAdmin')) {
+                        $config['roots'][] = [
+                            'baseUrl'=>'@web',
+                            'basePath'=>'@webroot',
+                            'path' => 'files',
+                            'name' => 'Global',
+                            'options' => [
+                                'startPath' => $startPath,
+                                'uploadMaxSize' => '20M',
+                                'attributes' => [
+                                    [
+                                        'pattern' => '#adm_users$#i',
+                                        'read' => false,
+                                        'write' => false,
+                                        'hidden' => true,
+                                        'locked' => false
+                                    ]
+                                ],
+                            ],
+                        ];
+                    }
+                    return $config;
+                },
+            ],
         ],
         'appadm' => [
             'class' => 'app\modules\appadm\Module',
