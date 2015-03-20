@@ -1,3 +1,7 @@
+# elfinder hidden files
+.quarantine
+.tmb
+
 # phpstorm project files
 .idea
 
