@@ -10,10 +10,13 @@ use yii\widgets\Breadcrumbs;
 /* @var $this \yii\web\View */
 /* @var $content string */
 $appAsset = AppAsset::register($this);
+/* @var $i18n \pavlinter\translation\I18N */
+$i18n = Yii::$app->getI18n();
 
-$menus = Page::find()->with(['translations','childs'])->where(['id_parent' => [1,2], 'active' => 1, 'visible' => 1])->orderBy(['weight' => SORT_ASC])->all();
+$menus = Page::find()->with(['translations','childs'])->where(['id_parent' => [1,2,3], 'active' => 1, 'visible' => 1])->orderBy(['weight' => SORT_ASC])->all();
 $Menu1 = [];
 $Menu2 = [];
+$Menu3 = [];
 
 $langBegin = Yii::$app->getUrlManager()->langBegin;
 if (isset($langBegin['0']) && $langBegin['0'] === Yii::$app->language) {
@@ -43,6 +46,8 @@ foreach ($menus as $menu) {
         $Menu1[] = $item;
     } elseif($menu->id_parent == 2) {
         $Menu2[] = $item;
+    } elseif($menu->id_parent == 3) {
+        $Menu3[] = $item;
     }
 }
 
@@ -73,24 +78,6 @@ if (Yii::$app->user->isGuest) {
 
 
 }
-
-$MenuLangs = [];
-foreach (Yii::$app->getI18n()->getLanguages() as $language) {
-    if ($language['image']) {
-        $text = Html::img($language['image']);
-    } else {
-        $text = Html::tag('span', $language['code'], ['class' => 'lang-code']);
-    }
-    $url = ['', 'lang' => $language['code']];
-    if (isset($language['url'])) {
-        $url = $language['url'];
-    }
-
-    $MenuLangs[] = [
-        'label' => $text,
-        'url' => $url,
-    ];
-}
 ?>
 
 <?php $this->beginContent('@webroot/views/layouts/base.php'); ?>
@@ -105,11 +92,11 @@ foreach (Yii::$app->getI18n()->getLanguages() as $language) {
         ],
     ]);
 
-        /*echo \yii\widgets\Menu::widget([
-            'options' => ['class' => 'pull-right'],
-            'items' => $MenuLangs,
+        echo \app\widgets\Menu::widget([
+            'options' => ['class' => 'core-langs'],
+            'items' => $i18n->menuItems(),
             'encodeLabels' => false,
-        ]);*/
+        ]);
 
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav navbar-right'],
