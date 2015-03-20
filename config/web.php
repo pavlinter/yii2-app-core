@@ -171,7 +171,7 @@ $config = [
             ],
         ],
         'assetManager' => [
-            //'appendTimestamp' => true, //yii2 >= 2.0.3
+            'appendTimestamp' => true,
             'bundles' => [
                 'yii\bootstrap\BootstrapAsset' => [
                     'basePath' => '@webroot/assets_b/common',
