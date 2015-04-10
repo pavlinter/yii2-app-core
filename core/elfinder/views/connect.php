@@ -3,6 +3,7 @@
  * @var array $options
  */
 
+use app\core\elfinder\events\ConnectEvent;
 use app\core\elfinder\MyElFinder;
 
 $elfinderPath = Yii::getAlias('@vendor/mihaildev/yii2-elfinder');
@@ -17,6 +18,9 @@ require_once($elfinderPath . '/php/elFinderVolumeMySQL.class.php');
 //require_once($elfinderPath . '/php/elFinderVolumeS3.class.php');
 require_once($elfinderPath . '/php/elFinderVolumeMySQL.class.php');
 
+$event = new ConnectEvent(['options' => $options]);
+Yii::$app->trigger('elfinder_connect_set_options', $event);
+
 $target      = Yii::$app->getRequest()->get('target');
 $width      = Yii::$app->getRequest()->get('w');
 $height     = Yii::$app->getRequest()->get('h');
@@ -24,8 +28,8 @@ $watermark  = Yii::$app->getRequest()->get('watermark');
 
 
 if ($width && $height) {
-    $options['bind']['upload.presave'][] = 'Plugin.AutoResize.onUpLoadPreSave';
-    $options['plugin']['AutoResize'] = [
+    $event->options['bind']['upload.presave'][] = 'Plugin.AutoResize.onUpLoadPreSave';
+    $event->options['plugin']['AutoResize'] = [
         'enable' => true,
         'maxWidth'  => $width,
         'maxHeight'  => $height,
@@ -40,8 +44,8 @@ if ($watermark) {
         $source = Yii::getAlias('@webroot/files/watermark.png');
     }
 
-    $options['bind']['upload.presave'][] = 'Plugin.Watermark.onUpLoadPreSave';
-    $options['plugin']['Watermark'] = [
+    $event->options['bind']['upload.presave'][] = 'Plugin.Watermark.onUpLoadPreSave';
+    $event->options['plugin']['Watermark'] = [
         'source' => Yii::getAlias('@webroot/files/watermark.png'), // Path to Water mark image
         'marginRight' => 5,          // Margin right pixel
         'marginBottom' => 5,          // Margin bottom pixel
@@ -52,13 +56,8 @@ if ($watermark) {
     ];
 }
 
-$elfinder = new MyElFinder($options);
-
-
-if ($target) {
-
-}
-
+Yii::$app->trigger('elfinder_connect_init', $event);
+$elfinder = new MyElFinder($event->options);
 
 // run elFinder
 $connector = new elFinderConnector($elfinder);
