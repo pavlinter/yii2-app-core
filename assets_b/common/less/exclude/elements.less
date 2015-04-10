@@ -173,3 +173,7 @@
   -webkit-text-shadow: @arguments;
   text-shadow: @arguments;
 }
+.fontSize(@size: 14px; @lineHeight: 2;){
+  font-size: @size;
+  line-height: (@size/@lineHeight) + @size;
+}
