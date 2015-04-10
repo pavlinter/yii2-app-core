@@ -128,6 +128,20 @@ $config = [
             },
             'pageLayout' => '/main',
             'closeDeletePage' => [1,2,3], //id [2,130]
+            'files' => [
+                'page' => [
+                    'dirs' => [
+                        '@webroot/files/pages/{id}/gallery'// {id} - id page
+                    ],
+                    'startPath' => 'pages::{id}', // where :: replace to /
+                ],
+                'main' => [
+                    'dirs' => [
+                        '@webroot/files/pages/{id}/gallery'
+                    ],
+                    'startPath' => 'pages::{id}',
+                ],
+            ],
             'components' => [
                 'manager' => [
                     'pageSearchClass' => 'app\core\admpages\models\PageSearch',
