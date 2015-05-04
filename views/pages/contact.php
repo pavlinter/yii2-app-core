@@ -1,8 +1,8 @@
 <?php
 use app\widgets\Alert;
+use app\widgets\Captcha;
 use pavlinter\admpages\Module;
 use yii\helpers\Html;
-use yii\captcha\Captcha;
 use yii\widgets\ActiveForm;
 
 
