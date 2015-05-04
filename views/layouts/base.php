@@ -6,7 +6,7 @@ use yii\helpers\Url;
  * @var \yii\web\View $this
  * @var string $content
  */
-
+\app\modules\admgoogletools\Module::loadGoogleTools();
 if (Yii::$app->params['html.canonical'] === true) {
     $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::canonical()]);
 } else if(Yii::$app->params['html.canonical'] !== false){

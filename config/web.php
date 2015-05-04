@@ -49,6 +49,7 @@ $config = [
             'modules' => [
                 'appadm',
                 'admpages',
+                'admgoogletools',
                 'admparams',
                 'admeconfig',
                 'admmailing',
@@ -108,6 +109,9 @@ $config = [
         ],
         'appadm' => [
             'class' => 'app\modules\appadm\Module',
+        ],
+        'admgoogletools' => [
+            'class' => 'app\modules\admgoogletools\Module',
         ],
         'gridview'=> [
             'class'=>'\kartik\grid\Module',
