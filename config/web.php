@@ -35,6 +35,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
+        'debug',
         'urlManager',
         'i18n',
     ],
@@ -44,6 +45,10 @@ $config = [
         \pavlinter\admeconfig\models\EmailConfig::changeMailConfig();
     },
     'modules' => [
+        'debug' => [
+            'class' => 'yii\debug\Module',
+            'allowedIPs' => ['127.0.0.1', '::1']
+        ],
         'adm' => [
             'class' => 'pavlinter\adm\Adm',
             'modules' => [
