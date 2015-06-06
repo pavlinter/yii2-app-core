@@ -2,6 +2,8 @@
 
 namespace app\assets_b;
 
+use kartik\icons\Icon;
+use Yii;
 use yii\web\AssetBundle;
 
 /**
@@ -26,4 +28,10 @@ class AppAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
+
+    public function init()
+    {
+        Icon::map(Yii::$app->getView(), Icon::FA);
+        parent::init();
+    }
 }
