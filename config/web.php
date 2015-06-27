@@ -57,7 +57,6 @@ $config = [
                 'admgoogletools',
                 'admparams',
                 'admeconfig',
-                'admmailing',
             ],
             'components' => [
                 'manager' => [
@@ -159,9 +158,6 @@ $config = [
         ],
         'admparams' => [
             'class' => 'pavlinter\admparams\Module',
-        ],
-        'admmailing' => [
-            'class' => 'pavlinter\admmailing\Module',
         ],
         'admeconfig' => [
             'class' => 'pavlinter\admeconfig\Module',

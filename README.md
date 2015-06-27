@@ -8,6 +8,4 @@ composer create-project --prefer-dist --stability=dev pavlinter/yii2-app-core pr
  - yii migrate --migrationPath=@vendor/pavlinter/yii2-adm-params/admparams/migrations
  - yii migrate --migrationPath=@vendor/pavlinter/yii2-adm-email-config/admeconfig/migrations
  
- - yii migrate --migrationPath=@vendor/pavlinter/yii2-adm-mailing/admmailing/migrations
- 
  - yii migrate --migrationPath=@app/migrations
