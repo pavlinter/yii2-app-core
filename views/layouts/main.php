@@ -20,9 +20,9 @@ $Menu3 = [];
 
 $langBegin = Yii::$app->getUrlManager()->langBegin;
 if (isset($langBegin['0']) && $langBegin['0'] === Yii::$app->language) {
-    $baseUrl = Url::to('/');
+    $baseUrl = Url::to('@web/');
 } else {
-    $baseUrl = Url::to('/' . Yii::$app->language . '/');
+    $baseUrl = Url::to('@web/' . Yii::$app->language . '/');
 }
 
 
