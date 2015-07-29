@@ -4,7 +4,7 @@ use app\core\admpages\models\Page;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
-use yii\helpers\Url;
+use app\helpers\Url;
 use yii\widgets\Breadcrumbs;
 
 /* @var $this \yii\web\View */
@@ -18,13 +18,7 @@ $Menu1 = [];
 $Menu2 = [];
 $Menu3 = [];
 
-$langBegin = Yii::$app->getUrlManager()->langBegin;
-if (isset($langBegin['0']) && $langBegin['0'] === Yii::$app->language) {
-    $baseUrl = Url::to('@web/');
-} else {
-    $baseUrl = Url::to('@web/' . Yii::$app->language . '/');
-}
-
+$baseUrl = Url::getLangUrl();
 
 foreach ($menus as $menu) {
     $item = [];
@@ -73,10 +67,6 @@ if (Yii::$app->user->isGuest) {
         'url' => ['/site/logout'],
         'linkOptions' => ['data-method' => 'post']
     ];
-
-
-
-
 }
 ?>
 
