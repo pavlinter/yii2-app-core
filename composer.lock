@@ -2252,16 +2252,16 @@
         },
         {
             "name": "pavlinter/yii2-dot-translation",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pavlinter/yii2-dot-translation.git",
-                "reference": "4edbf4300c8510136cbc7fdf66229d1a075e33ef"
+                "reference": "db77ac5921f703dfdadafb84a4eb26113dcc0621"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pavlinter/yii2-dot-translation/zipball/4edbf4300c8510136cbc7fdf66229d1a075e33ef",
-                "reference": "4edbf4300c8510136cbc7fdf66229d1a075e33ef",
+                "url": "https://api.github.com/repos/pavlinter/yii2-dot-translation/zipball/db77ac5921f703dfdadafb84a4eb26113dcc0621",
+                "reference": "db77ac5921f703dfdadafb84a4eb26113dcc0621",
                 "shasum": ""
             },
             "require": {
@@ -2292,7 +2292,7 @@
                 "translation",
                 "yii2"
             ],
-            "time": "2015-03-16 08:17:37"
+            "time": "2015-07-29 12:52:00"
         },
         {
             "name": "pavlinter/yii2-url-manager",

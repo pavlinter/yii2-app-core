@@ -192,6 +192,7 @@ $config = [
             },
             'dialog' => 'bs',
             'router' => '/adm/source-message/dot-translation',
+            'categoryUrl' => '@web/{lang}/adm/source-message/index?SourceMessageSearch[category]={category}',
             'translations' => [
                 'app*' => [
                     'class' => 'pavlinter\translation\DbMessageSource',
