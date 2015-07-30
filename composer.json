@@ -24,8 +24,8 @@
     "pavlinter/yii2-adm": "1.*",
     "pavlinter/yii2-display-image": "1.*",
     "pavlinter/yii2-adm-pages": "1.*",
-    "pavlinter/yii2-adm-params": "2.*",
-    "pavlinter/yii2-adm-email-config": "1.*",
+    "pavlinter/yii2-adm-params": "1.*",
+    "pavlinter/yii2-adm-email-config": "2.*",
     "kartik-v/yii2-icons": "1.*"
   },
   "require-dev": {
