@@ -56,6 +56,12 @@ if ($watermark) {
     ];
 }
 
+function filterName(&$path, &$name, $src, $elfinder, $volume) {
+    //$name = strtolower($name);
+    $name = str_replace(' ', '_', $name);
+}
+$event->options['bind']['upload.presave'][] = 'filterName';
+
 Yii::$app->trigger('elfinder_connect_init', $event);
 $elfinder = new MyElFinder($event->options);
 
