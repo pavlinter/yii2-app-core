@@ -81,6 +81,9 @@ $config = [
                 ],
             ],
             'controllerMap' => [
+                'user' => [
+                    'class' => 'app\core\adm\controllers\UserController',
+                ],
                 'elfinder' => function ($config) {
                     $startPath = Yii::$app->request->get('startPath');
                     if ($startPath) {
