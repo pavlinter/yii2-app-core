@@ -13,12 +13,27 @@ use pavlinter\adm\Adm;
 
 \app\assets_b\SumoselectAsset::register($this);
 
-$authItems = Adm::getInstance()->manager->createAuthItemQuery('find')->orderBy(['type' => SORT_ASC])->all();
+$authItems = Adm::getInstance()->manager->createAuthItemQuery('find')->where(['not in', 'name', $this->context->excludeRole])->orderBy(['created_at' => SORT_ASC])->all();
 $authAssignments = Adm::getInstance()->manager->createAuthAssignmentQuery('find')->select("item_name")->where(['user_id' => $model->id])->indexBy('item_name')->asArray()->all();
 
 $this->registerJs('
-    $(".sumoselect-role").SumoSelect({placeholder: "This is a placeholder"});
+    $(".sumoselect-role").SumoSelect({
+        placeholder: "' . Adm::t('sumoselect', 'Select ...', ['dot' => false]) . '",
+        captionFormat:"' . Adm::t('sumoselect', '{0} Selected', ['dot' => false]) . '",
+        selectAlltext: "' . Adm::t('sumoselect', 'Select All', ['dot' => false]) . '"
+    });
 ');
+
+$lis = [
+    'AdmRoot' => 'Root',
+    'AdmAdmin' => 'Admin',
+    'Adm-User' => 'Users',
+    'Adm-Language' => 'Languages',
+    'Adm-FilesRoot' => 'Media Files (Root)',
+    'Adm-FilesAdmin' => 'Media Files (Admin)',
+    'Adm-TranslRoot' => 'Translations',
+    'Pages' => 'Pages',
+];
 ?>
 
 <div class="user-form">
@@ -52,15 +67,25 @@ $this->registerJs('
 
         <div class="row">
             <div class="col-xs-12 col-sm-4 col-md-4">
-                <?php
-                echo $form->field($model, 'role')->widget(Select2::classname(), [
-                    'data' => $model::roles(),
-                    'options' => ['placeholder' => Adm::t('','Select ...', ['dot' => false])],
-                    'pluginOptions' => [
-
-                    ],
-                ]);
-                ?>
+                <div class="form-group">
+                    <label for="sumoselect-role" class="control-label"><?= Yii::t('modelAdm/user', 'Assignment Role') ?></label>
+                    <select class="sumoselect-role SelectClass" name="roles[]" id="sumoselect-role" multiple="multiple">
+                        <option class="group-head" disabled><?= Adm::t('sumoselect', 'Roles', ['dot' => false]) ?></option>
+                        <?php foreach ($authItems as $authItem) {?>
+                            <?php if ($authItem->type == 1) {?>
+                                <option class="group-item" <?= isset($authAssignments[$authItem->name]) ? 'selected' : ''; ?> value="<?= $authItem->name ?>"><?= Adm::t('sumoselect/items', $authItem->name, ['dot' => false]) ?></option>
+                            <?php }?>
+                        <?php }?>
+                        <option class="group-head" disabled><?= Adm::t('sumoselect', 'Permissions', ['dot' => false]) ?></option>
+                        <?php foreach ($authItems as $authItem) {?>
+                            <?php if ($authItem->type == 2) {?>
+                                <option class="group-item" <?= isset($authAssignments[$authItem->name]) ? 'selected' : ''; ?> value="<?= $authItem->name ?>"><?= Adm::t('sumoselect/items', $authItem->name, ['dot' => false]) ?></option>
+                            <?php }?>
+                        <?php }?>
+                    </select>
+                    <?= Adm::t('sumoselect', 'Roles', ['dot' => '.']) ?>
+                    <?= Adm::t('sumoselect', 'Permissions', ['dot' => '.']) ?>
+                </div>
             </div>
             <div class="col-xs-12 col-sm-4 col-md-4">
                 <?php
@@ -71,41 +96,6 @@ $this->registerJs('
 
                     ],
                 ]);
-                ?>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4">
-
-
-
-                <div class="form-group">
-                    <label for="sumoselect-role" class="control-label"><?= Yii::t('modelAdm/user', 'Assignment Role') ?></label>
-                    <select class="sumoselect-role" name="somename[]" id="sumoselect-role" multiple="multiple">
-                        <option class="group-head" disabled>Role</option>
-                        <?php foreach ($authItems as $authItem) {?>
-                            <?php if ($authItem->type == 1) {?>
-                                <option class="group-item" <?= isset($authAssignments[$authItem->name]) ? 'selected' : ''; ?> value="<?= $authItem->name ?>"><?= $authItem->name ?></option>
-                            <?php }?>
-                        <?php }?>
-                        <option class="group-head" disabled>Permission</option>
-                        <?php foreach ($authItems as $authItem) {?>
-                            <?php if ($authItem->type == 2) {?>
-                                <option class="group-item" <?= isset($authAssignments[$authItem->name]) ? 'selected' : ''; ?> value="<?= $authItem->name ?>"><?= $authItem->name ?></option>
-                            <?php }?>
-                        <?php }?>
-                    </select>
-
-                </div>
-
-                <?php
-                if ($model->isNewRecord) {
-                    echo $form->field($dynamicModel, 'assignment')->widget(Select2::classname(), [
-                        'data' => \yii\helpers\ArrayHelper::map($authItems, 'name' , 'name'),
-                        'options' => ['placeholder' => Adm::t('','Select ...', ['dot' => false])],
-                        'pluginOptions' => [
-                            'allowClear' => true,
-                        ],
-                    ])->label(Yii::t('modelAdm/user', 'Assignment Role'));
-                }
                 ?>
             </div>
         </div>

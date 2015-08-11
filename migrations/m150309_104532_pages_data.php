@@ -5,6 +5,17 @@ use yii\db\Migration;
 
 class m150309_104532_pages_data extends Migration
 {
+    public $rolesTranslations = [
+        'AdmRoot' => 'Root',
+        'AdmAdmin' => 'Admin',
+        'Adm-User' => 'Users',
+        'Adm-Language' => 'Languages',
+        'Adm-FilesRoot' => 'Media Files (Root)',
+        'Adm-FilesAdmin' => 'Media Files (Admin)',
+        'Adm-TranslRoot' => 'Translations',
+        'Adm-Pages' => 'Pages',
+    ];
+
     public function up()
     {
         $this->batchInsert('{{%page}}', ['id', 'id_parent', 'layout', 'type', 'weight', 'created_at', 'updated_at'],[
@@ -84,10 +95,23 @@ class m150309_104532_pages_data extends Migration
             [6, 1, 'Contact', 'Contact', 'contact', 'Curabitur congue augue ligula, vel ullamcorper ligula laoreet sed. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque eget sollicitudin elit, sit amet ultrices erat. Nulla ut pulvinar mauris. Vestibulum imperdiet gravida finibus. Nunc venenatis, orci a euismod molestie, massa quam consequat tellus, venenatis congue mauris tortor vel elit. Donec ac lacinia elit.'],
             [6, 2, 'Contact', 'Contact', 'contact', 'Curabitur congue augue ligula, vel ullamcorper ligula laoreet sed. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque eget sollicitudin elit, sit amet ultrices erat. Nulla ut pulvinar mauris. Vestibulum imperdiet gravida finibus. Nunc venenatis, orci a euismod molestie, massa quam consequat tellus, venenatis congue mauris tortor vel elit. Donec ac lacinia elit.'],
         ]);
+
+        foreach ($this->rolesTranslations as $role => $transl) {
+            $this->insert('{{%source_message}}', [
+                'category' => 'adm/sumoselect/items',
+                'message' => $role,
+            ]);
+            $this->insert('{{%message}}', [
+                'id' => $this->db->lastInsertID,
+                'language_id' => 1,
+                'translation' => $transl,
+            ]);
+        }
     }
 
     public function down()
     {
         $this->delete('{{%page}}', "id IN (1,2,3,4,5,6)");
+        $this->delete('{{%source_message}}', "category='adm/sumoselect/items' AND message IN ('" . implode("','", array_keys($this->rolesTranslations)) . "')");
     }
 }
