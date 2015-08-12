@@ -14,7 +14,7 @@ Yii::$app->i18n->resetDot();
 $authAssignments = Adm::getInstance()->manager->createAuthAssignmentQuery('find')->select("item_name")->where(['user_id' => $model->id])->orderBy(['item_name' => SORT_DESC])->asArray()->all();
 $rolesStr = '';
 foreach ($authAssignments as $authAssignment) {
-    $rolesStr .= '<div>' . Adm::t('sumoselect/items', $authAssignment['item_name'], ['dot' => false]) . '</div>';
+    $rolesStr .= '<div>' . $this->context->translateAuthItems($authAssignment['item_name']) . '</div>';
 }
 
 ?>
