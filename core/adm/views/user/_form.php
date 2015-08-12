@@ -23,17 +23,6 @@ $this->registerJs('
         selectAlltext: "' . Adm::t('sumoselect', 'Select All', ['dot' => false]) . '"
     });
 ');
-
-$lis = [
-    'AdmRoot' => 'Root',
-    'AdmAdmin' => 'Admin',
-    'Adm-User' => 'Users',
-    'Adm-Language' => 'Languages',
-    'Adm-FilesRoot' => 'Media Files (Root)',
-    'Adm-FilesAdmin' => 'Media Files (Admin)',
-    'Adm-TranslRoot' => 'Translations',
-    'Pages' => 'Pages',
-];
 ?>
 
 <div class="user-form">
