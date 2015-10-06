@@ -84,54 +84,7 @@ $config = [
                 'user' => [
                     'class' => 'app\core\adm\controllers\UserController',
                 ],
-                'elfinder' => function ($config) {
-                    $startPath = Yii::$app->request->get('startPath');
-                    if ($startPath) {
-                        $startPath = Yii::getAlias('@webroot') . '/files' . DIRECTORY_SEPARATOR . strtr($startPath, '::', '/');
-                    }
-                    if(Yii::$app->user->can('AdmAdmin')) {
-                        $config['roots'][] = [
-                            'baseUrl'=>'@web',
-                            'basePath'=>'@webroot',
-                            'path' => 'files',
-                            'name' => 'Global',
-                            'options' => [
-                                'startPath' => $startPath,
-                                'uploadMaxSize' => '20M',
-                                'attributes' => [
-                                    [
-                                        'pattern' => '#adm_users$#i',
-                                        'read' => false,
-                                        'write' => false,
-                                        'hidden' => true,
-                                        'locked' => false
-                                    ],
-                                ],
-                            ],
-                        ];
-                    }
-
-                    $config['roots'][] = [
-                        'baseUrl'=>'@web',
-                        'basePath'=>'@webroot',
-                        'path' => 'assets_b/common/images',
-                        'name' => 'Css Images',
-                        'options' => [
-                            'uploadMaxSize' => '20M',
-                            'attributes' => [
-                                [
-                                    'pattern' => '#.gitignore$#i',
-                                    'read' => false,
-                                    'write' => false,
-                                    'hidden' => true,
-                                    'locked' => false
-                                ]
-                            ],
-                        ],
-                    ];
-
-                    return $config;
-                },
+                'elfinder' => require(__DIR__ . '/elfinder.php'),
             ],
         ],
         'profilelogin' => [
@@ -165,15 +118,15 @@ $config = [
             'files' => [
                 'page' => [
                     'dirs' => [
-                        '@webroot/files/pages/{id}/gallery'// {id} - id page
+                        '@webroot/files/data/pages/{id}/gallery'// {id} - id page
                     ],
-                    'startPath' => 'pages::{id}', // where :: replace to /
+                    'startPath' => 'data::pages::{id}', // where :: replace to /
                 ],
                 'main' => [
                     'dirs' => [
-                        '@webroot/files/pages/{id}/gallery'
+                        '@webroot/files/data/pages/{id}/gallery'
                     ],
-                    'startPath' => 'pages::{id}',
+                    'startPath' => 'data::pages::{id}',
                 ],
             ],
             'components' => [
