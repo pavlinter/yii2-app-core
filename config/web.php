@@ -176,6 +176,7 @@ $config = [
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
+            //'cache' => 'cache', //this enables RBAC caching
         ],
         'urlManager' => [
             'class'=>'\pavlinter\urlmanager\UrlManager', //https://github.com/pavlinter/yii2-url-manager
