@@ -171,6 +171,7 @@ $config = [
     ],
     'components' => [
         'user' => [
+            'class' => 'app\components\User',
             'identityClass' => 'pavlinter\adm\models\User',
             'enableAutoLogin' => true,
         ],
