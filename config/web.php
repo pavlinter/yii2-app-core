@@ -114,6 +114,9 @@ $config = [
                 },
             ],
         ],
+        'profilelogin' => [
+            'class' => 'app\modules\profilelogin\Module',
+        ],
         'appadm' => [
             'class' => 'app\modules\appadm\Module',
         ],
@@ -191,7 +194,7 @@ $config = [
         'i18n' => [
             'class'=>'pavlinter\translation\I18N', //https://github.com/pavlinter/yii2-dot-translation
             'access' => function () {
-                return Yii::$app->getUser()->can('Adm-Transl');
+                return !Yii::$app->getUser()->isGuest && Yii::$app->getUser()->can('Adm-Transl');
             },
             'dialog' => 'bs',
             'router' => '/adm/source-message/dot-translation',
