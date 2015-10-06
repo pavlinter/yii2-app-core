@@ -194,7 +194,7 @@ $config = [
         'i18n' => [
             'class'=>'pavlinter\translation\I18N', //https://github.com/pavlinter/yii2-dot-translation
             'access' => function () {
-                return !Yii::$app->getUser()->isGuest && Yii::$app->getUser()->can('Adm-Transl');
+                return !Yii::$app->user->isGuest && Yii::$app->user->can('Adm-Transl');
             },
             'dialog' => 'bs',
             'router' => '/adm/source-message/dot-translation',
@@ -274,6 +274,22 @@ $config = [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
+                /*'email' => [
+                    'class' => 'yii\log\EmailTarget',
+                    'levels' => ['error'],
+                    'except' => [
+                        'yii\web\HttpException:404',
+                        'yii\i18n\PhpMessageSource*',
+                        'yii\i18n\I18N*',
+                    ],
+                    'message' => [
+                        'from' => ['noreply@gmail.com'],
+                        'to' => [
+                            //'test@gmail.com'
+                        ],
+                        'subject' => 'Error: ' . $_SERVER['SERVER_NAME'],
+                    ],
+                ],*/
             ],
         ],
         'db' => $db,
