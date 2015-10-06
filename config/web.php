@@ -19,8 +19,8 @@ if (YII_ENV_DEV) {
 Yii::$container->set('pavlinter\display\DisplayImage', [
     'config' => [
         'pages' => [
-            'imagesWebDir' => '@web/files/pages',
-            'imagesDir' => '@webroot/files/pages',
+            'imagesWebDir' => '@web/files/data/pages',
+            'imagesDir' => '@webroot/files/data/pages',
             'defaultWebDir' => '@web/files/default',
             'defaultDir' => '@webroot/files/default',
             'mode' => DisplayImage::MODE_OUTBOUND,
@@ -110,6 +110,26 @@ $config = [
                             ],
                         ];
                     }
+
+                    $config['roots'][] = [
+                        'baseUrl'=>'@web',
+                        'basePath'=>'@webroot',
+                        'path' => 'assets_b/common/images',
+                        'name' => 'Css Images',
+                        'options' => [
+                            'uploadMaxSize' => '20M',
+                            'attributes' => [
+                                [
+                                    'pattern' => '#.gitignore$#i',
+                                    'read' => false,
+                                    'write' => false,
+                                    'hidden' => true,
+                                    'locked' => false
+                                ]
+                            ],
+                        ],
+                    ];
+
                     return $config;
                 },
             ],
