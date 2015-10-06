@@ -107,11 +107,19 @@ class m150309_104532_pages_data extends Migration
                 'translation' => $transl,
             ]);
         }
+
+        $this->batchInsert('{{%auth_item_child}}', ['parent', 'child'],[
+            [
+                'AdmAdmin',
+                'Adm-TranslRoot',
+            ],
+        ]);
     }
 
     public function down()
     {
         $this->delete('{{%page}}', "id IN (1,2,3,4,5,6)");
         $this->delete('{{%source_message}}', "category='adm/sumoselect/items' AND message IN ('" . implode("','", array_keys($this->rolesTranslations)) . "')");
+        $this->delete('{{%auth_item_child}}', "parent='AdmAdmin' AND child='Adm-TranslRoot'");
     }
 }
