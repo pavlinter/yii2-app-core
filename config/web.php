@@ -105,7 +105,7 @@ $config = [
                                         'write' => false,
                                         'hidden' => true,
                                         'locked' => false
-                                    ]
+                                    ],
                                 ],
                             ],
                         ];
