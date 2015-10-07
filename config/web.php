@@ -164,7 +164,7 @@ $config = [
             'rules' => [
                 '' => 'admpages/default/main',
                 'page/<alias:([A-Za-z0-9_-])+>' => 'admpages/default/index',
-            ]
+            ],
         ],
         'i18n' => [
             'class'=>'pavlinter\translation\I18N', //https://github.com/pavlinter/yii2-dot-translation
@@ -225,6 +225,12 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'FONQ3Oh7wxcvVI1ioWvnZ6gJzwjyBV6xU',
         ],
+        /*'response' => [
+            'on beforeSend' => function ($event) {
+
+
+            },
+        ],*/
         'formatter' => [
             'datetimeFormat' => 'dd.MM.yyyy HH:mm:ss', // change Yii::$app->params['formatter.mysql.datetimeFormat']
             'dateFormat' => 'dd.MM.yyyy', // change Yii::$app->params['formatter.mysql.dateFormat']
