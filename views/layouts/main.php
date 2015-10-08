@@ -16,8 +16,8 @@ $i18n = Yii::$app->getI18n();
 if (Yii::$app->params['underconstruction.enabled']) {
 
     if (Yii::$app->user->can('AdmRoot') || Yii::$app->user->can('AdmAdmin')) {
-        $this->on(\yii\web\View::EVENT_BEGIN_BODY, function () {
-            echo '<div class="underconstruction-alert">Enabled Underconstruction</div>';
+        $this->on(\yii\web\View::EVENT_BEGIN_BODY, function ($event) {
+            echo $this->render('//site/_underconstruction_alert');
         });
     } else {
         Yii::$app->response->on(\yii\web\Response::EVENT_BEFORE_SEND, function ($event) {
