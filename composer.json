@@ -1,6 +1,6 @@
 {
   "name": "pavlinter/yii2-app-core",
-  "description": "Yii 2 Core Application Template (based on advanced)",
+  "description": "Yii 2 Core Application Template",
   "keywords": ["yii2", "framework", "core-app", "application", "template"],
   "type": "project",
   "license": "BSD-3-Clause",
