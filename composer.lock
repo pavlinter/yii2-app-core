@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2533603e415217ff193541481a04feb6",
+    "hash": "9bbc10b34fd22e40130f674d932d4382",
     "content-hash": "591203bfa3d158cec5cd9e2eab4a7f0c",
     "packages": [
         {
@@ -2120,16 +2120,16 @@
         },
         {
             "name": "pavlinter/yii2-adm-params",
-            "version": "v1.0.1",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pavlinter/yii2-adm-params.git",
-                "reference": "1a9be60ff919620ded2360a7ccbb91a358b06de4"
+                "reference": "d5bbf1ac971f868f3c301a2e4fe6fd37eb29cc5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pavlinter/yii2-adm-params/zipball/1a9be60ff919620ded2360a7ccbb91a358b06de4",
-                "reference": "1a9be60ff919620ded2360a7ccbb91a358b06de4",
+                "url": "https://api.github.com/repos/pavlinter/yii2-adm-params/zipball/d5bbf1ac971f868f3c301a2e4fe6fd37eb29cc5f",
+                "reference": "d5bbf1ac971f868f3c301a2e4fe6fd37eb29cc5f",
                 "shasum": ""
             },
             "require": {
@@ -2159,7 +2159,7 @@
                 "params",
                 "yii2"
             ],
-            "time": "2015-04-10 13:22:27"
+            "time": "2015-10-08 09:01:48"
         },
         {
             "name": "pavlinter/yii2-buttons",
