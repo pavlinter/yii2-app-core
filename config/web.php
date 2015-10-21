@@ -55,6 +55,7 @@ $config = [
                 'appadm',
                 'admpages',
                 'admgoogletools',
+                'admlivechat',
                 'admparams',
                 'admeconfig',
             ],
@@ -95,6 +96,9 @@ $config = [
         ],
         'admgoogletools' => [
             'class' => 'app\modules\admgoogletools\Module',
+        ],
+        'admlivechat' => [
+            'class' => 'app\modules\admlivechat\Module',
         ],
         'gridview'=> [
             'class'=>'\kartik\grid\Module',

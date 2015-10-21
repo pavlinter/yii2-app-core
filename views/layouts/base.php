@@ -7,6 +7,7 @@ use yii\helpers\Url;
  * @var string $content
  */
 \app\modules\admgoogletools\Module::loadGoogleTools();
+\app\modules\admlivechat\Module::loadLiveChat();
 if (Yii::$app->params['html.canonical'] === true) {
     $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::canonical()]);
 } else if(Yii::$app->params['html.canonical'] !== false){
