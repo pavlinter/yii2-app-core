@@ -36,7 +36,7 @@ class SettingsForm extends Model
     public function rules()
     {
         return [
-            [['scripts'], 'safe'],
+            [['scripts'], 'each', 'rule' => ['filter', 'filter' => 'trim']],
             [['active'], 'boolean'],
         ];
     }

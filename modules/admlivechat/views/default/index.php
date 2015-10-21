@@ -35,7 +35,7 @@ use yii\widgets\ActiveForm;
                         <div class="tab-pane" id="lang-<?= $id_language ?>">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <?= $form->field($model, 'scripts['.$id_language.']')->textarea(['value' => (isset($model->scripts[$id_language]) ? $model->scripts[$id_language] : '')]) ?>
+                                    <?= $form->field($model, 'scripts['.$id_language.']')->textarea(['rows' => 12,'value' => (isset($model->scripts[$id_language]) ? $model->scripts[$id_language] : '')]) ?>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,6 @@ use yii\widgets\ActiveForm;
                 </div>
             </div>
         </section>
-
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
