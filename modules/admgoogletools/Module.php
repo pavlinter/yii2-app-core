@@ -51,7 +51,6 @@ class Module extends \yii\base\Module implements AdmBootstrapInterface
                 $adm->params['left-menu']['api'] = [
                     'label' => '<span class="pull-right auto"><i class="fa fa-angle-down text"></i><i class="fa fa-angle-up text-active"></i></span><i class="fa fa-th"></i><span>' . static::t("menu", "API") . '</span>',
                     'url' => "#",
-                    'visible' => Yii::$app->user->can('AdmRoot'),
                     'items' => [],
                 ];
             }
