@@ -122,17 +122,19 @@ class Module extends \yii\base\Module implements AdmBootstrapInterface
         ],], $options);
     }
 
-    public static function loadGoogleTools()
+    public static function loadLiveChat()
     {
         $view = Yii::$app->getView();
         if (isset(Yii::$app->params['admlivechat'])) {
             $settings = Yii::$app->params['admlivechat'];
             if (isset($settings['active']) && $settings['active']) {
-                if (isset($settings['webtools']) && $settings['webtools']) {
-                    $view->metaTags[] = $settings['webtools'];
-                }
-                if (isset($settings['analytic']) && $settings['analytic']) {
-                    $view->registerJs($settings['analytic'], $view::POS_HEAD);
+                $language_id = Yii::$app->getI18n()->language['id'];
+                if (isset($settings['scripts'][$language_id]) && $settings['scripts']) {
+                    if ($settings['scripts']) {
+                        $view->on($view::EVENT_BEGIN_BODY, function ($e) use ($settings, $language_id) {
+                            echo $settings['scripts'][$language_id];
+                        });
+                    }
                 }
             }
         }

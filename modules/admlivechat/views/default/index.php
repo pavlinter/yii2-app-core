@@ -12,25 +12,39 @@ use yii\widgets\ActiveForm;
 
 <div class="admtinypng-default-index">
     <?= Module::trasnalateLink() ?>
-    <h1><?= Module::t('', 'Google Analytic') ?></h1>
+    <h1><?= Module::t('', 'Live Chat') ?></h1>
 
     <?php $form = ActiveForm::begin([
         'id' => 'admlivechat-form',
     ]);
     ?>
 
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6">
-                <div>
-                    <?= $form->field($model, 'analytic')->textarea(); ?>
+        <section class="panel adm-langs-panel">
+            <header class="panel-heading bg-light">
+                <ul class="nav nav-tabs nav-justified text-uc">
+                    <?php  foreach (Yii::$app->getI18n()->getLanguages() as $id_language => $language) { ?>
+                        <li><a href="#lang-<?= $id_language ?>" data-toggle="tab"><?= $language['name'] ?></a></li>
+                    <?php  }?>
+                </ul>
+            </header>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <?php
+                    foreach (Yii::$app->getI18n()->getLanguages() as $id_language => $language) {
+                        ?>
+                        <div class="tab-pane" id="lang-<?= $id_language ?>">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <?= $form->field($model, 'scripts['.$id_language.']')->textarea(['value' => (isset($model->scripts[$id_language]) ? $model->scripts[$id_language] : '')]) ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php  }?>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-6">
-                <div>
-                    <?= $form->field($model, 'webtools')->textarea(); ?>
-                </div>
-            </div>
-        </div>
+        </section>
+
+
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div>

@@ -12,9 +12,7 @@ use yii\base\Model;
  */
 class SettingsForm extends Model
 {
-    public $analytic;
-
-    public $webtools;
+    public $scripts;
 
     public $active = 1;
 
@@ -38,16 +36,10 @@ class SettingsForm extends Model
     public function rules()
     {
         return [
-            [['analytic'], 'filter', 'filter' => function ($value) {
-                $value = preg_replace('#<script(.*?)>(.*?)</script>#is', '$2', $value);
-                return trim($value);
-            },],
-            [['analytic', 'webtools'], 'string'],
+            [['scripts'], 'safe'],
             [['active'], 'boolean'],
         ];
     }
-
-
 
     /**
      * @inheritdoc
@@ -55,8 +47,7 @@ class SettingsForm extends Model
     public function attributeLabels()
     {
         return [
-            'analytic' => Yii::t('modelAdm/admlivechat', 'Analytic Code'),
-            'webtools' => Yii::t('modelAdm/admlivechat', 'Webmaster Tools'),
+            'scripts' => Yii::t('modelAdm/admlivechat', 'Live Chat Script'),
             'active' => Yii::t('modelAdm/admlivechat', 'Active'),
         ];
     }
