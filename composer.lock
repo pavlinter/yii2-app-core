@@ -1983,16 +1983,16 @@
         },
         {
             "name": "pavlinter/yii2-adm",
-            "version": "v1.0.5",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pavlinter/yii2-adm.git",
-                "reference": "fa7c484bdc13974a862d50456cecf82ab85d5fb8"
+                "reference": "7e815c54eb0d2882319b4179bb8344a381d86225"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pavlinter/yii2-adm/zipball/fa7c484bdc13974a862d50456cecf82ab85d5fb8",
-                "reference": "fa7c484bdc13974a862d50456cecf82ab85d5fb8",
+                "url": "https://api.github.com/repos/pavlinter/yii2-adm/zipball/7e815c54eb0d2882319b4179bb8344a381d86225",
+                "reference": "7e815c54eb0d2882319b4179bb8344a381d86225",
                 "shasum": ""
             },
             "require": {
@@ -2030,7 +2030,7 @@
                 "cms",
                 "yii2"
             ],
-            "time": "2015-09-15 12:06:12"
+            "time": "2015-10-22 07:12:43"
         },
         {
             "name": "pavlinter/yii2-adm-email-config",
@@ -2297,16 +2297,16 @@
         },
         {
             "name": "pavlinter/yii2-url-manager",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pavlinter/yii2-url-manager.git",
-                "reference": "823e0e9c3a414eb9175c01ee66834c6f5307c658"
+                "reference": "288f4f5a87a91ae45dc492807bb1571e07837443"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pavlinter/yii2-url-manager/zipball/823e0e9c3a414eb9175c01ee66834c6f5307c658",
-                "reference": "823e0e9c3a414eb9175c01ee66834c6f5307c658",
+                "url": "https://api.github.com/repos/pavlinter/yii2-url-manager/zipball/288f4f5a87a91ae45dc492807bb1571e07837443",
+                "reference": "288f4f5a87a91ae45dc492807bb1571e07837443",
                 "shasum": ""
             },
             "require": {
@@ -2336,7 +2336,7 @@
                 "urlmanager",
                 "yii2"
             ],
-            "time": "2015-07-29 07:58:39"
+            "time": "2015-10-21 14:05:07"
         },
         {
             "name": "swiftmailer/swiftmailer",
