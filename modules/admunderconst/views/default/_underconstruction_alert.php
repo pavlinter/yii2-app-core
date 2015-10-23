@@ -1,6 +1,7 @@
 <?php
 /* @var $this yii\web\View */
-
+/* @var $settings array */
+\app\modules\admunderconst\UnderConstAsset::register($this);
 $this->registerJs('
     $(".und-close").on("click", function(){
         $(this).closest(".und-alert").hide();

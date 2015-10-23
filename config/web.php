@@ -54,6 +54,7 @@ $config = [
             'modules' => [
                 'appadm',
                 'admpages',
+                'admunderconst',
                 'admgoogletools',
                 'admlivechat',
                 'admparams',
@@ -100,6 +101,12 @@ $config = [
         'admlivechat' => [
             'class' => 'app\modules\admlivechat\Module',
         ],
+        'admunderconst' => [
+            'class' => 'app\modules\admunderconst\Module',
+        ],
+
+
+
         'gridview'=> [
             'class'=>'\kartik\grid\Module',
         ],

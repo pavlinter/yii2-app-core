@@ -14,6 +14,4 @@ return [
     'user.passwordResetTokenExpire' => 3600,
     'formatter.mysql.datetimeFormat' => '%d.%m.%Y %h:%i:%s',
     'formatter.mysql.dateFormat' => '%d.%m.%Y',
-    'underconstruction.enabled' => 0,
-    'underconstruction.imagePath' => '/files/common/underconstruction.jpg',
 ];

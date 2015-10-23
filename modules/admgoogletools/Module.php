@@ -49,7 +49,7 @@ class Module extends \yii\base\Module implements AdmBootstrapInterface
 
             if (!isset($adm->params['left-menu']['api'])) {
                 $adm->params['left-menu']['api'] = [
-                    'label' => '<span class="pull-right auto"><i class="fa fa-angle-down text"></i><i class="fa fa-angle-up text-active"></i></span><i class="fa fa-th"></i><span>' . static::t("menu", "API") . '</span>',
+                    'label' => '<span class="pull-right auto"><i class="fa fa-angle-down text"></i><i class="fa fa-angle-up text-active"></i></span><i class="fa fa-th"></i><span>' . $adm::t("menu", "API") . '</span>',
                     'url' => "#",
                     'items' => [],
                 ];

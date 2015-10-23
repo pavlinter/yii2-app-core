@@ -13,26 +13,7 @@ $appAsset = AppAsset::register($this);
 /* @var $i18n \pavlinter\translation\I18N */
 $i18n = Yii::$app->getI18n();
 
-if (Yii::$app->params['underconstruction.enabled']) {
-
-    if (Yii::$app->user->can('AdmRoot') || Yii::$app->user->can('AdmAdmin')) {
-        $this->on(\yii\web\View::EVENT_BEGIN_BODY, function ($event) {
-            echo $this->render('//site/_underconstruction_alert');
-        });
-    } else {
-        Yii::$app->response->on(\yii\web\Response::EVENT_BEFORE_SEND, function ($event) {
-            /* @var $response \yii\web\Response */
-            $response = $event->sender;
-            $response->clearOutputBuffers();
-            $response->setStatusCode(200);
-            $response->format = \yii\web\Response::FORMAT_RAW;
-            $response->data = Yii::$app->getView()->renderFile('@webroot/views/site/underconstruction.php');
-            $response->off(\yii\web\Response::EVENT_BEFORE_SEND);
-            $response->send();
-            Yii::$app->end();
-        });
-    }
-}
+\app\modules\admunderconst\Module::loadUnderConstruction($this);
 
 $menus = Page::find()->with(['translations','childs'])->where(['id_parent' => [1,2,3], 'active' => 1, 'visible' => 1])->orderBy(['weight' => SORT_ASC])->all();
 $Menu1 = [];

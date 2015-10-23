@@ -1,19 +1,20 @@
 <?php
 
-namespace app\modules\admlivechat;
+namespace app\modules\admunderconst;
 
 use Yii;
 use pavlinter\adm\AdmBootstrapInterface;
+use yii\base\View;
 use yii\helpers\ArrayHelper;
 
 /**
  * Class Module
- * @package app\modules\admlivechat */
+ * @package app\modules\admunderconst */
 class Module extends \yii\base\Module implements AdmBootstrapInterface
 {
-    public $settingsKey = 'admlivechat';
+    public $settingsKey = 'admunderconst';
 
-    public $controllerNamespace = 'app\modules\admlivechat\controllers';
+    public $controllerNamespace = 'app\modules\admunderconst\controllers';
 
     public $layout = '@vendor/pavlinter/yii2-adm/adm/views/layouts/main';
 
@@ -26,7 +27,7 @@ class Module extends \yii\base\Module implements AdmBootstrapInterface
         $config = ArrayHelper::merge([
             'components' => [
                 'manager' => [
-                    'class' => 'app\modules\admlivechat\ModelManager'
+                    'class' => 'app\modules\admunderconst\ModelManager'
                 ],
             ],
         ], $config);
@@ -54,8 +55,8 @@ class Module extends \yii\base\Module implements AdmBootstrapInterface
                 ];
             }
             $adm->params['left-menu']['api']['items'][] = [
-                'label' => '<span>' . self::t('', 'Live Chat') . '</span>',
-                'url' => ['/admlivechat']
+                'label' => '<span>' . self::t('', 'Under Construction') . '</span>',
+                'url' => ['/admunderconst']
             ];
         }
     }
@@ -74,8 +75,8 @@ class Module extends \yii\base\Module implements AdmBootstrapInterface
      */
     public function registerTranslations()
     {
-        if (!isset(Yii::$app->i18n->translations['admlivechat*'])) {
-            Yii::$app->i18n->translations['admlivechat*'] = [
+        if (!isset(Yii::$app->i18n->translations['admunderconst*'])) {
+            Yii::$app->i18n->translations['admunderconst*'] = [
                 'class' => 'pavlinter\translation\DbMessageSource',
                 'forceTranslation' => true,
                 'autoInsert' => true,
@@ -94,9 +95,9 @@ class Module extends \yii\base\Module implements AdmBootstrapInterface
     public static function t($category, $message, $params = [], $language = null)
     {
         if ($category) {
-            $category = 'admlivechat/' . $category;
+            $category = 'admunderconst/' . $category;
         } else {
-            $category = 'admlivechat';
+            $category = 'admunderconst';
         }
         return Yii::t($category, $message, $params, $language);
     }
@@ -118,25 +119,44 @@ class Module extends \yii\base\Module implements AdmBootstrapInterface
         \yii\helpers\Html::addCssClass($options, $icon);
 
         return \yii\helpers\Html::a(null, ['/adm/source-message/index', '?' => [
-            'SourceMessageSearch[category]' => 'admlivechat'
+            'SourceMessageSearch[category]' => 'admunderconst'
         ],], $options);
     }
 
-    public static function loadLiveChat()
+
+
+    /**
+     * @param \yii\web\View $view
+     */
+    public static function loadUnderConstruction($view)
     {
         $view = Yii::$app->getView();
-        if (isset(Yii::$app->params['admlivechat'])) {
-            $settings = Yii::$app->params['admlivechat'];
+        if (isset(Yii::$app->params['admunderconst'])) {
+            $settings = Yii::$app->params['admunderconst'];
             if (isset($settings['active']) && $settings['active']) {
-                $language_id = Yii::$app->getI18n()->language['id'];
-                if (isset($settings['scripts'][$language_id]) && $settings['scripts']) {
-                    if ($settings['scripts']) {
-                        $view->on($view::EVENT_BEGIN_BODY, function ($e) use ($settings, $language_id) {
-                            echo $settings['scripts'][$language_id];
-                        });
-                    }
+                if (Yii::$app->user->can('AdmRoot') || Yii::$app->user->can('AdmAdmin')) {
+                    $view->on(\yii\web\View::EVENT_BEGIN_BODY, function ($event) use($view, $settings) {
+                        echo $view->render('@webroot/modules/admunderconst/views/default/_underconstruction_alert', [
+                            'settings' => $settings,
+                        ]);
+                    });
+                } else {
+                    Yii::$app->response->on(\yii\web\Response::EVENT_BEFORE_SEND, function ($event) use($view, $settings){
+                        /* @var $response \yii\web\Response */
+                        $response = $event->sender;
+                        $response->clearOutputBuffers();
+                        $response->setStatusCode(200);
+                        $response->format = \yii\web\Response::FORMAT_RAW;
+                        $response->data = $view->renderFile('@webroot/modules/admunderconst/views/default/underconstruction.php',[
+                            'settings' => $settings,
+                        ]);
+                        $response->off(\yii\web\Response::EVENT_BEFORE_SEND);
+                        $response->send();
+                        Yii::$app->end();
+                    });
                 }
             }
         }
     }
+
 }
