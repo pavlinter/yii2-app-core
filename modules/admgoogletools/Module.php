@@ -55,6 +55,7 @@ class Module extends \yii\base\Module implements AdmBootstrapInterface
                 ];
             }
             $adm->params['left-menu']['api']['items'][] = [
+                'key' => 'admgoogletools',
                 'label' => '<span>' . self::t('', 'Google') . '</span>',
                 'url' => ['/admgoogletools']
             ];
@@ -66,7 +67,8 @@ class Module extends \yii\base\Module implements AdmBootstrapInterface
      */
     public function beforeAction($action)
     {
-        Yii::$app->getModule('adm');
+        $adm = Yii::$app->getModule('adm');
+        $adm->params['left-menu-active'][] = 'admgoogletools';
         return parent::beforeAction($action);
     }
 

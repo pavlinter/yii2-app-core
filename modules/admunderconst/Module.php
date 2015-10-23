@@ -55,6 +55,7 @@ class Module extends \yii\base\Module implements AdmBootstrapInterface
                 ];
             }
             $adm->params['left-menu']['api']['items'][] = [
+                'key' => 'admunderconst',
                 'label' => '<span>' . self::t('', 'Under Construction') . '</span>',
                 'url' => ['/admunderconst']
             ];
@@ -66,7 +67,8 @@ class Module extends \yii\base\Module implements AdmBootstrapInterface
      */
     public function beforeAction($action)
     {
-        Yii::$app->getModule('adm');
+        $adm = Yii::$app->getModule('adm');
+        $adm->params['left-menu-active'][] = 'admunderconst';
         return parent::beforeAction($action);
     }
 
