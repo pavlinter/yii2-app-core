@@ -61,7 +61,8 @@ class ContactForm extends Model
         $valid = EmailConfig::eachEmail(function ($email) {
             return Yii::$app->mailer->compose()
                 ->setTo($email)
-                ->setFrom([$this->email => Yii::t("app/contacts", "CORE IT - Website From {name}", ['dot' => false, 'name' => $this->name])])
+                ->setFrom(Yii::$app->params['adminEmailName'])
+                //->setFrom([$this->email => Yii::t("app/contacts", "CORE IT - Website From {name}", ['dot' => false, 'name' => $this->name])])
                 ->setReplyTo($this->email)
                 ->setSubject(Yii::t("app/contacts", "Message from site", ['dot' => false, 'name' => $this->name, 'email' => $this->email, 'body' => $this->body, 'phone' => $this->phone]))
                 ->setHtmlBody(Yii::t("app/contacts", "Contact message<br/>Name: {name}<br/>Email: {email}<br/>Phone: {phone}<br/>Message: {body}", ['dot' => false, 'name' => $this->name, 'email' => $this->email, 'body' => $this->body, 'phone' => $this->phone]))
