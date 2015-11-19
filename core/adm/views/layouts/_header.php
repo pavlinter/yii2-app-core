@@ -16,7 +16,7 @@ $languages = $i18n->getLanguages(true);
             <i class="fa fa-bars"></i>
         </a>
         <a href="<?= Url::base(true) ?>" class="nav-brand" target="_blank">
-            <img src="/core/adm/assets/img/core-icon.png" style="position: relative;top: 1px;" alt=""/>
+            <img src="<?= Url::to('@web/core/adm/assets/img/core-icon.png') ?>" style="position: relative;top: 1px;" alt=""/>
             CORE
             <sup>cms</sup>
         </a>
