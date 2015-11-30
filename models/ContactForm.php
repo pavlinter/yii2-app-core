@@ -73,7 +73,7 @@ class ContactForm extends Model
                 $model->save(false);
                 $model = null;
             }
-            
+
             return Yii::$app->mailer->compose()
                 ->setTo($email)
                 ->setFrom(Yii::$app->params['adminEmailName'])
