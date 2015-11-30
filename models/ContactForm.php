@@ -58,14 +58,29 @@ class ContactForm extends Model
      */
     public function sendEmail()
     {
-        $valid = EmailConfig::eachEmail(function ($email) {
+
+        $model = new ContactMsg();
+        $valid = EmailConfig::eachEmail(function ($email) use ($model) {
+
+            $subject = Yii::t("app/contacts", "Message from site", ['dot' => false, 'name' => $this->name, 'email' => $this->email, 'body' => $this->body, 'phone' => $this->phone]);
+            $body = Yii::t("app/contacts", "Contact message<br/>Name: {name}<br/>Email: {email}<br/>Phone: {phone}<br/>Message: {body}", ['dot' => false, 'name' => $this->name, 'email' => $this->email, 'body' => $this->body, 'phone' => $this->phone]);
+
+            if ($model) {
+                $model->from_email = $this->email;
+                $model->to_email = $email;
+                $model->subject = $subject;
+                $model->text = $body;
+                $model->save(false);
+                $model = null;
+            }
+            
             return Yii::$app->mailer->compose()
                 ->setTo($email)
                 ->setFrom(Yii::$app->params['adminEmailName'])
                 //->setFrom([$this->email => Yii::t("app/contacts", "CORE IT - Website From {name}", ['dot' => false, 'name' => $this->name])])
                 ->setReplyTo($this->email)
-                ->setSubject(Yii::t("app/contacts", "Message from site", ['dot' => false, 'name' => $this->name, 'email' => $this->email, 'body' => $this->body, 'phone' => $this->phone]))
-                ->setHtmlBody(Yii::t("app/contacts", "Contact message<br/>Name: {name}<br/>Email: {email}<br/>Phone: {phone}<br/>Message: {body}", ['dot' => false, 'name' => $this->name, 'email' => $this->email, 'body' => $this->body, 'phone' => $this->phone]))
+                ->setSubject($subject)
+                ->setHtmlBody($body)
                 ->send();
         });
 
