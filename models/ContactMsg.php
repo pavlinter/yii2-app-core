@@ -51,7 +51,7 @@ class ContactMsg extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['from_email', 'to_email'], 'required'],
+            [['from_email'], 'required'],
             [['text'], 'string'],
             [['from_email', 'to_email'], 'email'],
             [['subject'], 'string', 'max' => 300]

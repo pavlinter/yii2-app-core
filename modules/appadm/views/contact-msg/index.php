@@ -37,12 +37,11 @@ Yii::$app->i18n->resetDot();
 				'format' => 'email',
 			],
 			[
-				'attribute' => 'to_email',
-				'format' => 'email',
-			],
-			[
 				'attribute' => 'subject',
-				'format' => 'text',
+				'format' => 'raw',
+				'value' => function ($model) {
+				    return Html::a($model->subject, ['view', 'id' => $model->id]);
+				}
 			],
 			[
 				'attribute' => 'text',
@@ -51,6 +50,9 @@ Yii::$app->i18n->resetDot();
 			[
 				'attribute' => 'created_at',
 				'format' => 'text',
+				'width' => '150px',
+				'vAlign' => 'middle',
+				'hAlign' => 'center',
 			],
 			[
 				'attribute' => 'viewed',

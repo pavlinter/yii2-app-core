@@ -32,7 +32,7 @@ class Module extends \yii\base\Module implements AdmBootstrapInterface
         ];
 
         $adm->params['left-menu']['appadm-contact-msg'] = [
-            'label' => '<i class="fa fa-list-alt"></i><span>' . $adm::t('appadm','contact') . '</span>',
+            'label' => '<i class="fa fa-envelope-square"></i><span>' . $adm::t('appadm','Contact') . '</span>',
             'url' => ['/appadm/contact-msg/index'],
             'visible' => $adm->user->can('AdmRoot') || $adm->user->can('AdmAdmin'),
         ];
