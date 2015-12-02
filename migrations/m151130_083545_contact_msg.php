@@ -15,7 +15,7 @@ class m151130_083545_contact_msg extends Migration
         $this->createTable('{{%contact_msg}}', [
             'id' => Schema::TYPE_PK,
             'from_email' => Schema::TYPE_STRING . "(320) NOT NULL",
-            'to_email' => Schema::TYPE_STRING . "(320) NOT NULL",
+            'to_email' => Schema::TYPE_STRING . "(320) NULL",
             'subject' => Schema::TYPE_STRING . "(300) NOT NULL",
             'text' => Schema::TYPE_TEXT,
             'viewed' => Schema::TYPE_BOOLEAN . "(1) NOT NULL DEFAULT '0'",
