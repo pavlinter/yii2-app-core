@@ -1,7 +1,5 @@
 <?php
 
-use pavlinter\display\DisplayImage;
-
 if (YII_ENV_DEV) {
     $params = \yii\helpers\ArrayHelper::merge(
         require(__DIR__ . '/params.php'),
@@ -15,19 +13,6 @@ if (YII_ENV_DEV) {
     $params = require(__DIR__ . '/params.php');
     $db = require(__DIR__ . '/db.php');
 }
-
-Yii::$container->set('pavlinter\display\DisplayImage', [
-    'config' => [
-        'pages' => [
-            'imagesWebDir' => '@web/files/data/pages',
-            'imagesDir' => '@webroot/files/data/pages',
-            'defaultWebDir' => '@web/files/default',
-            'defaultDir' => '@webroot/files/default',
-            'mode' => DisplayImage::MODE_OUTBOUND,
-        ],
-    ]
-]);
-
 
 $config = [
     'name' => 'My Application',
@@ -152,6 +137,18 @@ $config = [
         'admeconfig' => [
             'class' => 'pavlinter\admeconfig\Module',
         ],
+        'display2'=> [
+            'class'=>'pavlinter\display2\Module',
+            'categories' => [
+                'pages' => [
+                    'imagesWebDir' => '@web/files/data/pages',
+                    'imagesDir' => '@webroot/files/data/pages',
+                    'defaultWebDir' => '@web/files/default',
+                    'defaultDir' => '@webroot/files/default',
+                    'mode' => \pavlinter\display2\objects\Image::MODE_OUTBOUND,
+                ],
+            ],
+        ],
     ],
     'components' => [
         'user' => [
@@ -164,7 +161,7 @@ $config = [
             //'cache' => 'cache', //this enables RBAC caching
         ],
         'urlManager' => [
-            'class'=>'\pavlinter\urlmanager\UrlManager', //https://github.com/pavlinter/yii2-url-manager
+            'class'=>'app\components\UrlManager', //https://github.com/pavlinter/yii2-url-manager
             'enableLang' => true,
             'langBegin' => ['en','ru', 'lv'],
             'enablePrettyUrl' => true,
@@ -178,7 +175,7 @@ $config = [
             ],
         ],
         'i18n' => [
-            'class'=>'pavlinter\translation\I18N', //https://github.com/pavlinter/yii2-dot-translation
+            'class'=>'app\components\I18N', //https://github.com/pavlinter/yii2-dot-translation
             'access' => function () {
                 return !Yii::$app->user->isGuest && Yii::$app->user->can('Adm-Transl');
             },
@@ -248,6 +245,9 @@ $config = [
             'decimalSeparator' => ',',
             'thousandSeparator' => ' ',
             'currencyCode' => 'EUR',
+        ],
+        'display' => [
+            'class' => 'app\components\Display',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',

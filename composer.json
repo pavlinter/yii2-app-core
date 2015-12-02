@@ -22,11 +22,18 @@
     "yiisoft/yii2-swiftmailer": "*",
 
     "pavlinter/yii2-adm": "1.*",
-    "pavlinter/yii2-display-image": "1.*",
+    "pavlinter/yii2-display-image2": "0.*",
     "pavlinter/yii2-adm-pages": "1.*",
     "pavlinter/yii2-adm-params": "1.*",
     "pavlinter/yii2-adm-email-config": "2.*",
     "kartik-v/yii2-icons": "1.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "app\\": [
+        ""
+      ]
+    }
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",

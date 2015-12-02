@@ -20,4 +20,7 @@ if($_SERVER['SERVER_ADDR'] == '127.0.0.1') {
     $config = require(__DIR__ . '/config/web.php');
 }
 
-(new yii\web\Application($config))->run();
+(new \app\modules\Application($config))->run();
+
+
+
