@@ -60,20 +60,18 @@ class ContactForm extends Model
     {
 
         $model = new ContactMsg();
-        $valid = EmailConfig::eachEmail(function ($email) use ($model) {
 
-            $subject = Yii::t("app/contacts", "Contact Us", ['dot' => false, 'name' => $this->name, 'email' => $this->email, 'body' => $this->body, 'phone' => $this->phone]);
-            $body = Yii::t("app/contacts", "Contact message<br/>Name: {name}<br/>Email: {email}<br/>Phone: {phone}<br/>Message: {body}", ['dot' => false, 'name' => $this->name, 'email' => $this->email, 'body' => $this->body, 'phone' => $this->phone]);
+        $subject = Yii::t("app/contacts", "Message from site", ['dot' => false, 'name' => $this->name, 'email' => $this->email, 'body' => $this->body, 'phone' => $this->phone]);
+        $body = Yii::t("app/contacts", "Contact message<br/>Name: {name}<br/>Email: {email}<br/>Phone: {phone}<br/>Message: {body}", ['dot' => false, 'name' => $this->name, 'email' => $this->email, 'body' => $this->body, 'phone' => $this->phone]);
 
-            if ($model) {
-                $model->from_email = $this->email;
-                $model->to_email = $email;
-                $model->subject = $subject;
-                $model->text = $body;
-                $model->save(false);
-                $model = null;
-            }
+        if ($model) {
+            $model->from_email = $this->email;
+            $model->subject = $subject;
+            $model->text = $body;
+            $model->save(false);
+        }
 
+        $valid = EmailConfig::eachEmail(function ($email) use ($subject, $body) {
             return Yii::$app->mailer->compose()
                 ->setTo($email)
                 ->setFrom(Yii::$app->params['adminEmailName'])
