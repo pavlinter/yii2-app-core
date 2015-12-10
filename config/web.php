@@ -89,9 +89,9 @@ $config = [
         'admunderconst' => [
             'class' => 'app\modules\admunderconst\Module',
         ],
-
-
-
+        'cloud' => [
+            'class' => 'app\modules\cloud\Cloud',
+        ],
         'gridview'=> [
             'class'=>'\kartik\grid\Module',
         ],
