@@ -44,6 +44,7 @@ $config = [
                 'admlivechat',
                 'admparams',
                 'admeconfig',
+                'admhidemenu',
             ],
             'components' => [
                 'manager' => [
@@ -88,6 +89,9 @@ $config = [
         ],
         'admunderconst' => [
             'class' => 'app\modules\admunderconst\Module',
+        ],
+        'admhidemenu' => [
+            'class' => 'app\modules\admhidemenu\Module',
         ],
         'cloud' => [
             'class' => 'app\modules\cloud\Cloud',
